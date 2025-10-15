@@ -1,0 +1,22 @@
+.gradient-custom {
+    background: url("../../public/squiggle-pattern-gray.jpg")repeat center center;
+    }
+    .card {
+      background-color: #ffff;
+    }
+    a{
+        color:#0097b4;
+        text-decoration: none;
+    }
+    .btn{
+        font-family: Roboto, sans-serif;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 24px;
+        color: #fefefe;
+        background-color: #0097b4;
+    }
+    .btn:hover{
+        color: #ffff;
+        background-color: #08819a;
+    }

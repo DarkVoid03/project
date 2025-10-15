@@ -1,0 +1,28 @@
+
+@media screen and (min-width: 992px) and (max-width: 1440px) {
+    .navi{
+        height: 90vh;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        color: #4bc0d1;
+    }
+    .container-fluid{
+        height: 100vh;
+        left: 0;
+    }
+      
+  }
+.navbar{
+    background-color: #f6f7f7;
+}
+.nav-link{
+    position: relative;
+  margin-left: 0;
+  transition: margin-right 0.3s ease;
+}
+.nav-link:hover {
+    margin-left: 10px;
+    background-color: #ffff;
+    color: #4bc0d1;
+}
