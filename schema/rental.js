@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
 const rentalSchema = new mongoose.Schema({
-  book: {
-    type: mongoose.Schema.Types.ObjectId,
+  rentedBooks: {
+    type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Book" }],
     ref: "book",
     required: true,
   },
