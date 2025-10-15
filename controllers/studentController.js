@@ -12,7 +12,7 @@ const getAllStudents = async (req, res) => {
 const getStudentById = async (req, res) => {
   const { isbn } = req.params;
   try {
-    const student = await Student.findById(isbn);
+    const student = await Student.findOne({isbn });
     if (!student) {
       return res.status(404).json({ message: "Student not found" });
     }
@@ -23,12 +23,12 @@ const getStudentById = async (req, res) => {
 };
 
 const createStudent = async (req, res) => {
-  const { name, grade, isbn } = req.body;
+  const { name, grade, isbn} = req.body;
   try {
     const student = new Student({
       name,
       grade,
-      isbn,
+      isbn
     });
     await student.save();
     res.status(201).json(student);
@@ -39,11 +39,11 @@ const createStudent = async (req, res) => {
 
 const updateStudent = async (req, res) => {
   const { isbn } = req.params;
-  const { name, rollNumber } = req.body;
+  const { name, grade } = req.body;
   try {
-    const student = await Student.findByIdAndUpdate(
-      isbn,
-      { name, rollNumber },
+    const student = await Student.findOneAndUpdate(
+      {isbn},
+      { name, grade },
       { new: true }
     );
     if (!student) {
@@ -75,3 +75,4 @@ module.exports = {
   updateStudent,
   deleteStudent,
 };
+
