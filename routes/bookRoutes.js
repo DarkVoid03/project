@@ -1,13 +1,16 @@
 const express = require("express");
 const bookController = require("../controllers/bookController");
-// const authMiddleware = require('../middleware/authMiddleware');
+const authMiddleware = require("../controllers/authMiddleware");
+// const bodyParser = require("body-parser");
 
 const router = express.Router();
+// router.use(bodyParser.json());
+// router.use(bodyParser.urlencoded({ extended: true }));
 
 router.get("/", bookController.getAllBooks);
-router.get("/:id", bookController.getBookById);
-router.post("/", bookController.createBook);
-router.put("/:id", bookController.updateBook);
-router.delete("/:id", bookController.deleteBook);
+router.get("/:isbn", bookController.getBookById);
+router.post("/",authMiddleware, bookController.createBook);
+router.put("/:isbn",authMiddleware, bookController.updateBook);
+router.delete("/:isbn",authMiddleware, bookController.deleteBook);
 
 module.exports = router;
