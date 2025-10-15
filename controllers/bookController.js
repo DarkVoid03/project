@@ -1,5 +1,6 @@
 const Book = require("../schema/book");
 
+
 const getAllBooks = async (req, res) => {
   try {
     const books = await Book.find();
@@ -12,11 +13,12 @@ const getAllBooks = async (req, res) => {
 const getBookById = async (req, res) => {
   const { isbn } = req.params;
   try {
-    const book = await Book.findById(isbn);
+    const book = await Book.find({isbn});
     if (!book) {
       return res.status(404).json({ message: "Book not found" });
     }
     res.status(200).json(book);
+    return book;
   } catch (error) {
     res.status(500).json({ message: "Internal server error" });
   }
@@ -42,17 +44,18 @@ const createBook = async (req, res) => {
 
 const updateBook = async (req, res) => {
   const { isbn } = req.params;
-  const { title, author, quantity, date, price } = req.body;
+  const { title, author, quantity, price } = req.body;
   try {
-    const book = await Book.findByIdAndUpdate(
-      isbn,
-      { title, author, quantity, date, price },
+    const book = await Book.find({isbn})
+    const update = await Book.findByIdAndUpdate(
+      book[0].id,
+      { title, author, quantity, price },
       { new: true }
     );
-    if (!book) {
+    if (!update) {
       return res.status(404).json({ message: "Book not found" });
     }
-    res.status(200).json(book);
+    res.status(200).json(update);
   } catch (error) {
     res.status(500).json({ message: "Internal server error" });
   }
